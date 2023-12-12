@@ -35,7 +35,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-public class  PaperweightServerLevelDelegateProxy implements InvocationHandler {
+public class PaperweightServerLevelDelegateProxy implements InvocationHandler {
 
     private final EditSession editSession;
     private final ServerLevel serverLevel;
