@@ -11,7 +11,6 @@ import com.fastasyncworldedit.core.math.BitArrayUnstretched;
 import com.fastasyncworldedit.core.math.IntPair;
 import com.fastasyncworldedit.core.util.MathMan;
 import com.fastasyncworldedit.core.util.TaskManager;
-import com.mojang.datafixers.util.Either;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.adapter.BukkitImplAdapter;
 import com.sk89q.worldedit.bukkit.adapter.Refraction;
@@ -44,7 +43,6 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.StateHolder;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.GlobalPalette;
 import net.minecraft.world.level.chunk.HashMapPalette;
@@ -77,7 +75,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
@@ -99,8 +96,6 @@ public final class PaperweightPlatformAdapter extends NMSAdapter {
     private static final Field fieldTickingFluidCount;
     private static final Field fieldTickingBlockCount;
     private static final Field fieldBiomes;
-
-    private static final Field fieldPropertiesCodec;
 
     private static final MethodHandle methodGetVisibleChunk;
 
@@ -153,9 +148,6 @@ public final class PaperweightPlatformAdapter extends NMSAdapter {
             }
             fieldBiomes = tmpFieldBiomes;
             fieldBiomes.setAccessible(true);
-
-            fieldPropertiesCodec = StateHolder.class.getDeclaredField(Refraction.pickName("propertiesCodec", "f"));
-            fieldPropertiesCodec.setAccessible(true);
 
             Method getVisibleChunkIfPresent = ChunkMap.class.getDeclaredMethod(Refraction.pickName(
                     "getVisibleChunkIfPresent",
